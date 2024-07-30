@@ -1,0 +1,36 @@
+{% comment %} {% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ book.title }}</h2>
+  <p><strong>Author:</strong> {{ book.author }}</p>
+  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p><strong>Published Date:</strong> {{ book.published_date }}</p>
+  <p><strong>Available:</strong> {{ book.available }}</p>
+  
+  <a href="{% url 'book_update' book.pk %}">Edit</a>
+  <a href="{% url 'book_delete' book.pk %}">Delete</a>
+  <a href="{% url 'book_list' %}">Back to list</a>
+{% endblock %}
+
+ {% endcomment %}
+
+ <!-- book_detail.html -->
+
+{% if messages %}
+ <ul class="messages">
+     {% for message in messages %}
+         <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+             {{ message }}
+         </li>
+     {% endfor %}
+ </ul>
+{% endif %}
+
+<h1>{{ book.title }}</h1>
+<p>Author: {{ book.author }}</p>
+<p>ISBN: {{ book.isbn }}</p>
+<p>Published Date: {{ book.published_date }}</p>
+<p>Available: {{ book.available }}</p>
+
+<a href="{% url 'book_update' book.pk %}">Edit</a>
+<a href="{% url 'book_delete' book.pk %}">Delete</a>

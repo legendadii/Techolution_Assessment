@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+{% endif %}
+
+{% block content %}
+  <h2>{% if user.pk %}Edit{% else %}Add{% endif %} User</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">{% if user.pk %}Update{% else %}Add{% endif %} User</button>
+  </form>
+  <a href="{% url 'user_list' %}">Back to list</a>
+{% endblock %}

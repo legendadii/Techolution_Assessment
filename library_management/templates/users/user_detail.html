@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+{% endif %}
+
+{% block content %}
+  <h2>User Details</h2>
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>User ID:</strong> {{ user.user_id }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+  <!-- Add more user fields as necessary -->
+  
+  <a href="{% url 'user_update' user.pk %}">Edit</a>
+  <a href="{% url 'user_delete' user.pk %}">Delete</a>
+  <a href="{% url 'user_list' %}">Back to list</a>
+{% endblock %}

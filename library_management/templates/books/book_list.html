@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+{% endif %}
+
+
+{% block content %}
+  <h2>Book List</h2>
+  <a href="{% url 'book_create' %}">Add a new book</a>
+  <ul>
+    {% for book in books %}
+      <li>
+        <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+        <a href="{% url 'book_update' book.pk %}">Edit</a>
+        <a href="{% url 'book_delete' book.pk %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

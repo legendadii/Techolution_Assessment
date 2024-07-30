@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Users</title>
+</head>
+<body>
+    <h1>Library Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.user_id }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <a href="{% url 'user_detail' user.pk %}">View</a> |
+                    <a href="{% url 'user_update' user.pk %}">Edit</a> |
+                    <a href="{% url 'user_delete' user.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'user_create' %}">Add New User</a>
+</body>
+</html>
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+{% endif %}
